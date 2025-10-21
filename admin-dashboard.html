@@ -255,14 +255,22 @@
 
             if (application) {
                 const details = `
-                    <p><strong>Név:</strong> ${application.fullName}</p>
-                    <p><strong>Email:</strong> ${application.email}</p>
-                    <p><strong>Telefon:</strong> ${application.phone}</p>
-                    <p><strong>Születési dátum:</strong> ${application.birthDate}</p>
-                    <p><strong>Protézis típus:</strong> ${getFingerTypeText(application.fingerType)} (${application.hand === 'left' ? 'Bal' : 'Jobb'})</p>
-                    <p><strong>Mióta hiányzik:</strong> ${application.timeSince}</p>
-                    <p><strong>További információk:</strong> ${application.additionalInfo || 'Nincs'}</p>
-                    <p><strong>Státusz:</strong> <span class="status-badge status-${application.status}">${getStatusText(application.status)}</span></p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <p><strong>Név:</strong> ${application.fullName}</p>
+                            <p><strong>Email:</strong> ${application.email}</p>
+                            <p><strong>Telefon:</strong> ${application.phone}</p>
+                            <p><strong>Születési dátum:</strong> ${application.birthDate}</p>
+                            <p><strong>Protézis típus:</strong> ${getFingerTypeText(application.fingerType)} (${application.hand === 'left' ? 'Bal' : 'Jobb'})</p>
+                            <p><strong>Mióta hiányzik:</strong> ${application.timeSince}</p>
+                            <p><strong>További információk:</strong> ${application.additionalInfo || 'Nincs'}</p>
+                            <p><strong>Státusz:</strong> <span class="status-badge status-${application.status}">${getStatusText(application.status)}</span></p>
+                        </div>
+                        <div>
+                            <p><strong>Feltöltött kép:</strong></p>
+                            <img src="${application.fingerImage}" style="max-width: 100%; max-height: 300px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        </div>
+                    </div>
                 `;
                 document.getElementById('applicationDetails').innerHTML = details;
                 document.getElementById('applicationModal').style.display = 'block';
