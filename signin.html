@@ -179,7 +179,10 @@
                 <textarea name="additionalInfo" placeholder="Írjon le minden olyan információt, amit fontosnak tart megosztani velünk..."></textarea>
             </div>
 
-            <button type="submit">Jelentkezés küldése</button>
+            <div style="grid-column: span 2; display: flex; gap: 20px; justify-content: center;">
+                <button type="submit" style="flex: 1; max-width: 400px;">Jelentkezés küldése</button>
+                <button type="button" onclick="requestOffer()" style="flex: 1; max-width: 400px; background-color: #4CAF50;">Árajánlat kérése</button>
+            </div>
 
             <style>
                 .image-upload-container {
@@ -227,6 +230,60 @@
     </footer>
 
     <script>
+        function requestOffer() {
+            // Check if required fields are filled
+            const form = document.getElementById('prostheticForm');
+            const requiredFields = form.querySelectorAll('[required]');
+            let allFieldsFilled = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    allFieldsFilled = false;
+                    field.style.borderColor = 'red';
+                } else {
+                    field.style.borderColor = '#ddd';
+                }
+            });
+
+            if (!allFieldsFilled) {
+                alert('Kérjük, töltse ki az összes kötelező mezőt az árajánlat kéréséhez!');
+                return;
+            }
+
+            const formData = {
+                id: Date.now(),
+                date: new Date().toISOString().split('T')[0],
+                fullName: form.fullName.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                birthDate: form.birthDate.value,
+                fingerType: form.fingerType.value,
+                hand: form.hand.value,
+                timeSince: form.timeSince.value,
+                additionalInfo: form.additionalInfo.value,
+                fingerImage: document.getElementById('imagePreview').src,
+                status: 'offer-requested',
+                type: 'offer-request'
+            };
+
+            // Get existing applications or initialize empty array
+            let applications = JSON.parse(localStorage.getItem('prostheticApplications') || '[]');
+            
+            // Add new application
+            applications.push(formData);
+            
+            // Save back to localStorage
+            localStorage.setItem('prostheticApplications', JSON.stringify(applications));
+
+            // Show success message with 24-hour email notification
+            alert('Köszönjük az árajánlatkérést! 24 órán belül részletes árajánlatot küldünk a megadott email címre (' + form.email.value + ').');
+            
+            // Reset form and preview
+            form.reset();
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('uploadText').style.display = 'block';
+        }
+
         // Function to preview the uploaded image
         function previewImage(event) {
             const file = event.target.files[0];
@@ -304,8 +361,8 @@
                     // Save back to localStorage
                     localStorage.setItem('prostheticApplications', JSON.stringify(applications));
 
-                    // Show success message
-                    alert('Köszönjük a jelentkezését! Hamarosan felvesszük Önnel a kapcsolatot.');
+                    // Show success message with 24-hour email notification
+                    alert('Köszönjük a jelentkezését! 24 órán belül részletes tájékoztatót küldünk a megadott email címre (' + document.getElementById('prostheticForm').email.value + ').');
                     
                     // Reset form and preview
                     document.getElementById('prostheticForm').reset();
