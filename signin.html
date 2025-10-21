@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelentkezés - Műujj Protézis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #ff8800;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #ff8800;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #e67a00;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #666;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #555;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #ff8800;
+            color: white;
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .required {
+            color: red;
+            margin-left: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Jelentkezés Műujj Protézisre</h1>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-button">← Vissza a főoldalra</a>
+        
+        <form id="prostheticForm">
+            <div class="form-group">
+                <label>Teljes név<span class="required">*</span></label>
+                <input type="text" name="fullName" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email cím<span class="required">*</span></label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Telefonszám<span class="required">*</span></label>
+                <input type="tel" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label>Születési dátum<span class="required">*</span></label>
+                <input type="date" name="birthDate" required>
+            </div>
+
+            <div class="form-group">
+                <label>Melyik ujj?<span class="required">*</span></label>
+                <select name="fingerType" required>
+                    <option value="">Válasszon...</option>
+                    <option value="thumb">Hüvelykujj</option>
+                    <option value="index">Mutatóujj</option>
+                    <option value="middle">Középső ujj</option>
+                    <option value="ring">Gyűrűsujj</option>
+                    <option value="pinky">Kisujj</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Melyik kéz?<span class="required">*</span></label>
+                <select name="hand" required>
+                    <option value="">Válasszon...</option>
+                    <option value="left">Bal</option>
+                    <option value="right">Jobb</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Mióta hiányzik az ujj?<span class="required">*</span></label>
+                <input type="text" name="timeSince" placeholder="pl.: 2 éve" required>
+            </div>
+
+            <div class="form-group">
+                <label>További információk</label>
+                <textarea name="additionalInfo" placeholder="Írjon le minden olyan információt, amit fontosnak tart megosztani velünk..."></textarea>
+            </div>
+
+            <button type="submit">Jelentkezés küldése</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Prostheticz. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('prostheticForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Köszönjük a jelentkezését! Hamarosan felvesszük Önnel a kapcsolatot.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
