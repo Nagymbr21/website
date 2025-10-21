@@ -117,6 +117,8 @@
             
             // Simple demo authentication (in real application, this should be server-side)
             if (username === 'admin' && password === 'admin123') {
+                // Set the login flag in sessionStorage
+                sessionStorage.setItem('adminLoggedIn', 'true');
                 window.location.href = 'admin-dashboard.html';
             } else {
                 document.getElementById('errorMessage').style.display = 'block';

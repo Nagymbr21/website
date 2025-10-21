@@ -121,7 +121,7 @@
 <body>
     <header>
         <h1 class="header-title">Admin Irányítópult</h1>
-        <a href="admin-login.html" class="logout-btn">Kijelentkezés</a>
+        <a href="#" onclick="logout()" class="logout-btn">Kijelentkezés</a>
     </header>
 
     <main>
@@ -178,6 +178,12 @@
     <script>
         // Check if user is logged in
         if (!sessionStorage.getItem('adminLoggedIn')) {
+            window.location.href = 'admin-login.html';
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem('adminLoggedIn');
             window.location.href = 'admin-login.html';
         }
 
