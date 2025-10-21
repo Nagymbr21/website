@@ -8,11 +8,12 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-color: #f5f5f5;
         }
         header {
             background-color: #ff8800;
@@ -23,17 +24,68 @@
         nav {
             background-color: #f4f4f4;
             padding: 1rem;
+            text-align: center;
         }
         nav a {
             color: #333;
             text-decoration: none;
-            margin-right: 15px;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ff8800;
         }
         main {
-            max-width: 100%;
-            margin: 20px;
-            padding-bottom: 100px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
             flex: 1;
+        }
+        .hero-section {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 15px;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .hero-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+        .hero-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .hero-content p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .content-section {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         footer {
             text-align: center;
@@ -43,6 +95,20 @@
             margin-top: auto;
             width: 100%;
             box-sizing: border-box;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #ff8800;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #e67a00;
         }
     </style>
 </head>
@@ -59,27 +125,77 @@
     </nav>
 
     <main>
-        <section id="home">
-            <h2>Home</h2>
-            <p>Üdvözőllek ezen a weboldalon! 
-
-        <section id="about">
-            <h2>Rólunk</h2>
-            <p>IDK</p>
+        <section class="hero-section">
+            <img src="images/prosthetic-hand.jpg" alt="Prosthetic Hand" class="hero-image" id="mainImage">
+            <div class="hero-content">
+                <h2>Innovatív Protézis Megoldások</h2>
+                <p>Modern technológiával a teljesebb életért</p>
+                <a href="muujj.html" class="cta-button">Tudjon meg többet</a>
+            </div>
         </section>
 
-        <section id="services">
+        <section id="home" class="content-section">
+            <h2>Üdvözöljük a Prostheticznél</h2>
+            <p>Mi a legmodernebb technológiát használjuk, hogy segítsünk Önnek visszanyerni a mindennapi tevékenységek szabadságát.</p>
+        </section>
+
+        <section id="about" class="content-section">
+            <h2>Rólunk</h2>
+            <p>A Prostheticz csapata elkötelezett a legmagasabb minőségű protézis megoldások biztosítása mellett. Személyre szabott megoldásainkkal segítünk ügyfeleinknek visszanyerni önállóságukat.</p>
+        </section>
+
+        <section id="services" class="content-section">
             <h2>Szolgáltatások</h2>
             <ul>
-                <li><a href="muujj.html">Műujj protézis</a></li>
+                <li><a href="muujj.html" style="color: #ff8800; text-decoration: none;">Műujj protézis</a> - Személyre szabott, innovatív megoldások</li>
             </ul>
         </section>
 
-        <section id="contact">
+        <section id="contact" class="content-section">
             <h2>Kapcsolat</h2>
             <p>Email: gerincem123@gmail.com</p>
         </section>
     </main>
+
+    <script>
+        // Function to handle image upload
+        function uploadImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        document.getElementById('mainImage').src = event.target.result;
+                        // Save the image to localStorage
+                        localStorage.setItem('mainPageImage', event.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            
+            input.click();
+        }
+
+        // Check if there's a saved image
+        window.onload = function() {
+            const savedImage = localStorage.getItem('mainPageImage');
+            if (savedImage) {
+                document.getElementById('mainImage').src = savedImage;
+            }
+        }
+
+        // Add double-click event to the hero section for admin image upload
+        document.querySelector('.hero-section').addEventListener('dblclick', function(e) {
+            // Only allow upload if coming from admin page (you can modify this condition)
+            if (sessionStorage.getItem('adminLoggedIn')) {
+                uploadImage();
+            }
+        });
+    </script>
 
     <footer>
         <p>&copy; 2025 <a href="admin-login.html" style="color: white; text-decoration: none; font-weight: bold;"></a>Prostheticz</a>. All rights reserved.</p>
