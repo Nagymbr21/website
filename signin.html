@@ -22,9 +22,9 @@
             text-align: center;
         }
         main {
-            max-width: 600px;
+            max-width: 800px;
             margin: 20px auto;
-            padding: 20px;
+            padding: 40px;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -159,7 +159,35 @@
     <script>
         document.getElementById('prostheticForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                id: Date.now(), // unique ID for the application
+                date: new Date().toISOString().split('T')[0],
+                fullName: this.fullName.value,
+                email: this.email.value,
+                phone: this.phone.value,
+                birthDate: this.birthDate.value,
+                fingerType: this.fingerType.value,
+                hand: this.hand.value,
+                timeSince: this.timeSince.value,
+                additionalInfo: this.additionalInfo.value,
+                status: 'new' // Initial status for new applications
+            };
+
+            // Get existing applications or initialize empty array
+            let applications = JSON.parse(localStorage.getItem('prostheticApplications') || '[]');
+            
+            // Add new application
+            applications.push(formData);
+            
+            // Save back to localStorage
+            localStorage.setItem('prostheticApplications', JSON.stringify(applications));
+
+            // Show success message
             alert('Köszönjük a jelentkezését! Hamarosan felvesszük Önnel a kapcsolatot.');
+            
+            // Reset form
             this.reset();
         });
     </script>

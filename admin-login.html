@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Belépés - Prostheticz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #ff8800;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input:focus {
+            border-color: #ff8800;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            background-color: #ff8800;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #e67a00;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            color: #ff8800;
+        }
+        .error-message {
+            color: #ff0000;
+            margin-top: 10px;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Belépés</h1>
+    </header>
+
+    <main>
+        <form id="adminLoginForm">
+            <div class="form-group">
+                <label>Felhasználónév</label>
+                <input type="text" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label>Jelszó</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <button type="submit">Belépés</button>
+            <div id="errorMessage" class="error-message">
+                Hibás felhasználónév vagy jelszó!
+            </div>
+        </form>
+
+        <a href="index.html" class="back-link">← Vissza a főoldalra</a>
+    </main>
+
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = this.username.value;
+            const password = this.password.value;
+            
+            // Simple demo authentication (in real application, this should be server-side)
+            if (username === 'admin' && password === 'admin123') {
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
