@@ -110,6 +110,51 @@
         .cta-button:hover {
             background-color: #e67a00;
         }
+        /* Portfolio (Referencia Munka) styles */
+        .portfolio-section {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+        .portfolio-card {
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fafafa;
+            border: 1px solid #eee;
+        }
+        .portfolio-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .portfolio-card .card-body {
+            padding: 12px;
+        }
+        .portfolio-card h3 {
+            margin: 0 0 6px 0;
+            font-size: 1.05em;
+        }
+        .portfolio-card p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+        @media (max-width: 900px) {
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 520px) {
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .hero-section { height: 320px; }
+        }
     </style>
 </head>
 <body>
@@ -136,15 +181,41 @@
 
         <section id="home" class="content-section">
             <h2>Üdvözöljük a Prosthesisnél</h2>
-            <p>Mi a legmodernebb technológiát használjuk, hogy segítsünk Önnek visszanyerni a mindennapi tevékenységek szabadságát.</p>
+            <p>Modern technológiát használunk, hogy segítsünk Önnek visszanyerni a mindennapi tevékenységek szabadságát.</p>
         </section>
 
-        <h2>Referencia Munka:</h2>
-            <p></p>
+        <section id="references" class="portfolio-section">
+            <h2>Referencia Munka</h2>
+            <div class="portfolio-grid">
+                <article class="portfolio-card">
+                    <img src="https://via.placeholder.com/800x600?text=Referencia+1" alt="Referencia 1">
+                    <div class="card-body">
+                        <h3>Referencia 1</h3>
+                        <p>Rövid leírás: műujj készítés, egyéni illeszkedés és funkcionális tesztelés.</p>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <img src="https://via.placeholder.com/800x600?text=Referencia+2" alt="Referencia 2">
+                    <div class="card-body">
+                        <h3>Referencia 2</h3>
+                        <p>Rövid leírás: egyéni protézis finomhangolása, estedben kézi mozgások optimalizálása.</p>
+                    </div>
+                </article>
+
+                <article class="portfolio-card">
+                    <img src="https://via.placeholder.com/800x600?text=Referencia+3" alt="Referencia 3">
+                    <div class="card-body">
+                        <h3>Referencia 3</h3>
+                        <p>Rövid leírás: esztétikai felületkezelés és kopásállóság javítása.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
 
         <section id="about" class="content-section">
             <h2>Rólunk:</h2>
-            <h4>Miskolcon,</h4><p>Hobbyként szeretnék hozzájárulni a teljesebb élethez protézisek elkészítésével.</p>
+            <h4>Miskolcon,</h4><p>Hobbyként szeretnék hozzájárulni a teljesebb élethez protézisek elkészítésével. Elképzeltem és meg is valósítottam.</p>
         </section>
 
         <section id="services" class="content-section">
@@ -204,4 +275,6 @@
 
     <footer>
         <p>&copy; 2025 <a href="admin-login.html" style="color: white; text-decoration: none; font-weight: bold;">Prosthesis</a>. All rights reserved.</p>
+    </footer>
+</body>
 </html>
