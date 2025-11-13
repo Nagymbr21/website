@@ -188,7 +188,7 @@
             <h2>Referencia Munka</h2>
             <div class="portfolio-grid">
                 <article class="portfolio-card">
-                    <img src="https://via.placeholder.com/800x600?text=Referencia+1" alt="Referencia 1">
+                    <img id="refImg1" src="https://via.placeholder.com/800x600?text=Referencia+1" alt="Referencia 1">
                     <div class="card-body">
                         <h3>Referencia 1</h3>
                         <p>Rövid leírás: műujj készítés, egyéni illeszkedés és funkcionális tesztelés.</p>
@@ -196,7 +196,7 @@
                 </article>
 
                 <article class="portfolio-card">
-                    <img src="https://via.placeholder.com/800x600?text=Referencia+2" alt="Referencia 2">
+                    <img id="refImg2" src="https://via.placeholder.com/800x600?text=Referencia+2" alt="Referencia 2">
                     <div class="card-body">
                         <h3>Referencia 2</h3>
                         <p>Rövid leírás: egyéni protézis finomhangolása, estedben kézi mozgások optimalizálása.</p>
@@ -204,7 +204,7 @@
                 </article>
 
                 <article class="portfolio-card">
-                    <img src="https://via.placeholder.com/800x600?text=Referencia+3" alt="Referencia 3">
+                    <img id="refImg3" src="https://via.placeholder.com/800x600?text=Referencia+3" alt="Referencia 3">
                     <div class="card-body">
                         <h3>Referencia 3</h3>
                         <p>Rövid leírás: esztétikai felületkezelés és kopásállóság javítása.</p>
@@ -256,11 +256,20 @@
             input.click();
         }
 
-        // Check if there's a saved image
+        // Check if there's a saved image and reference images
         window.onload = function() {
             const savedImage = localStorage.getItem('mainPageImage');
             if (savedImage) {
                 document.getElementById('mainImage').src = savedImage;
+            }
+
+            // Load reference images if admin uploaded them
+            for (let i = 1; i <= 3; i++) {
+                const ref = localStorage.getItem('refImage' + i);
+                if (ref) {
+                    const el = document.getElementById('refImg' + i);
+                    if (el) el.src = ref;
+                }
             }
         }
 
